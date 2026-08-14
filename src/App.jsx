@@ -583,7 +583,6 @@ function ActivityCard({ activity, onSelect }) {
     <button onClick={() => onSelect(activity.id)}
       className="pragya-card pragya-focus text-left rounded-2xl pragya-glass border overflow-hidden flex flex-col h-full"
       style={{ borderColor: "var(--line)" }}>
-      <div className="pragya-card-edge" />
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-1">
           <h3 className="display font-bold text-lg leading-snug" style={{ color: "var(--plum-ink)" }}>{activity.title}</h3>
