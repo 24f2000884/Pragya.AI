@@ -85,13 +85,6 @@ const Tokens = () => (
       -webkit-backdrop-filter:blur(10px) saturate(160%);
     }
 
-    /* ---- Signature: the "break" edge, echoing the activities' own teaching device ---- */
-    .pragya-card-edge{
-      height:10px; width:100%; flex-shrink:0;
-      background:linear-gradient(100deg, var(--lavender), var(--butter-deep));
-      clip-path:polygon(0.0% 0%, 6.25% 100%, 12.5% 0%, 18.75% 100%, 25.0% 0%, 31.25% 100%, 37.5% 0%, 43.75% 100%, 50.0% 0%, 56.25% 100%, 62.5% 0%, 68.75% 100%, 75.0% 0%, 81.25% 100%, 87.5% 0%, 93.75% 100%, 100.0% 0%, 100% 100%, 0% 100%);
-    }
-
     .pragya-scroll::-webkit-scrollbar{ width:8px; height:8px; }
     .pragya-scroll::-webkit-scrollbar-thumb{ background:rgba(201,193,227,0.7); border-radius:8px; }
 
@@ -681,7 +674,7 @@ function LibraryView({ activities, customActivities, role, onSelect, onCreate, f
       <div className="mb-6">
         <h1 className="display font-extrabold text-3xl mb-1" style={{ color: "var(--plum-ink)" }}>Activity library</h1>
         <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
-          {mineOnly ? "Activities you've created, visible only to you and your school." : "Every Pragya AI activity, in curriculum order — screen-free and ready to run."}
+          {mineOnly ? "Activities you've created, visible only to you and your school."}
         </p>
       </div>
 
