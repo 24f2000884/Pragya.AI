@@ -673,7 +673,6 @@ function LibraryView({ activities, customActivities, role, onSelect, onCreate, f
       <div className="mb-6">
         <h1 className="display font-extrabold text-3xl mb-1" style={{ color: "var(--plum-ink)" }}>Activity library</h1>
         <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
-          {mineOnly ? "Activities you've created, visible only to you and your school."}
         </p>
       </div>
 
