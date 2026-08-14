@@ -577,7 +577,6 @@ function NavBar({ view, setView, role, setRole, mobileOpen, setMobileOpen }) {
         )}
       </div>
       <div className="text-center py-1.5 text-[11px] font-medium tracking-wide" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>
-        Screen-free. Bilingual. Built for Bharat.
       </div>
     </div>
   );
