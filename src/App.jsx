@@ -554,7 +554,7 @@ function ActivityCard({ activity, onSelect }) {
   );
 }
 
-const GUEST_FREE_LIMIT = 3;
+const GUEST_FREE_LIMIT = 1;
 
 function GuestPaywall({ teaserActivities, hiddenCount, onSubscribe }) {
   return (
