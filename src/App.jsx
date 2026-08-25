@@ -356,9 +356,9 @@ function ShapeOfIt({ activity }) {
 /* Login                                                                */
 /* ------------------------------------------------------------------ */
 const ROLE_INFO = {
-  "Licensed Teacher": {tabLabel: "Licensed Teacher"},
-  "Admin": {tabLabel: "Admin"},
-  "Guest": {tabLabel: "Guest teacher"}
+  "Licensed Teacher": { icon: GraduationCap, tabLabel: "Licensed Teacher", blurb: "Full access to the official library, downloads, and your own activity builder." },
+  "Admin": { icon: Settings, tabLabel: "Admin", blurb: "Admin" },
+  "Guest": { icon: Users, tabLabel: "Guest teacher", blurb: "Preview a handful of activities right away." }
 };
 
 function LoginView({ onLogin }) {
