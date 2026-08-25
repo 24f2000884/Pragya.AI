@@ -3,7 +3,7 @@ import {
   Search, SlidersHorizontal, X, ChevronRight, ChevronLeft, Download,
   Plus, Check, ArrowRight, ArrowLeft, LayoutGrid, Settings, Sparkles,
   Lock, Save, Send, Trash2, AlertCircle, Menu, BookOpen, Users,
-  ClipboardList, Zap, CheckCircle2, Circle
+  ClipboardList, Zap, CheckCircle2, Circle, LogOut, Mail, KeyRound, GraduationCap
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -83,6 +83,12 @@ const Tokens = () => (
     .pragya-root [style*="pale-lavender"]{
       backdrop-filter:blur(10px) saturate(160%);
       -webkit-backdrop-filter:blur(10px) saturate(160%);
+    }
+
+    /* ---- Signature top edge on activity cards ---- */
+    .pragya-card-edge{
+      height:6px; width:100%; flex-shrink:0;
+      background:linear-gradient(100deg, var(--lavender), var(--butter-deep));
     }
 
     .pragya-scroll::-webkit-scrollbar{ width:8px; height:8px; }
@@ -493,9 +499,100 @@ function ShapeOfIt({ activity }) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Login                                                                */
+/* ------------------------------------------------------------------ */
+const ROLE_INFO = {
+  "Licensed Teacher": { icon: GraduationCap, tabLabel: "Licensed Teacher", blurb: "Full access to the official library, downloads, and your own activity builder." },
+  "Admin": { icon: Settings, tabLabel: "Admin", blurb: "Manage the official library, review submissions, and publish new activities." },
+  "Guest": { icon: Users, tabLabel: "Guest teacher", blurb: "No account needed — preview a handful of activities right away." }
+};
+
+function LoginView({ onLogin }) {
+  const [tab, setTab] = useState("Licensed Teacher");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const info = ROLE_INFO[tab];
+  const Icon = info.icon;
+
+  const submit = () => {
+    if (!email.trim() || !password.trim()) { setError("Enter an email and password to continue."); return; }
+    setError("");
+    onLogin(tab);
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md pragya-fade-in">
+        <div className="text-center mb-6">
+          <div className="w-12 h-12 mx-auto rounded-xl flex items-center justify-center font-bold text-sm mb-3" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>PA</div>
+          <h1 className="display font-extrabold text-2xl" style={{ color: "var(--plum-ink)" }}>Pragya AI</h1>
+          <p className="text-sm mt-1" style={{ color: "var(--ink-soft)" }}>Screen-free AI activities for your classroom.</p>
+        </div>
+
+        <div className="rounded-3xl pragya-glass border p-6" style={{ borderColor: "var(--line)" }}>
+          <div className="flex gap-1 mb-5 p-1 rounded-xl" style={{ background: "var(--lavender-card)" }}>
+            {Object.keys(ROLE_INFO).map(r => (
+              <button key={r} onClick={() => { setTab(r); setError(""); }}
+                className="pragya-focus flex-1 px-2 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                style={{ background: tab === r ? "rgba(255,255,255,0.85)" : "transparent", color: "var(--plum)", boxShadow: tab === r ? "0 3px 12px rgba(42,36,56,0.14)" : "none" }}>
+                {ROLE_INFO[r].tabLabel}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-start gap-2.5 mb-5">
+            <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--lavender-card)", color: "var(--plum)" }}>
+              <Icon size={16} />
+            </div>
+            <p className="text-xs leading-snug pt-1.5" style={{ color: "var(--ink-soft)" }}>{info.blurb}</p>
+          </div>
+
+          {tab === "Guest" ? (
+            <button onClick={() => onLogin("Guest")} className="pragya-focus pragya-btn-primary w-full py-3 rounded-xl font-semibold text-sm">
+              Continue as guest
+            </button>
+          ) : (
+            <>
+              <Field label="Email">
+                <div className="relative">
+                  <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: "var(--ink-faint)" }} />
+                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@school.edu"
+                    className="pragya-focus w-full pl-9 pr-3 py-2.5 rounded-lg border text-sm pragya-glass" style={{ borderColor: "var(--line)" }} />
+                </div>
+              </Field>
+              <Field label="Password">
+                <div className="relative">
+                  <KeyRound size={15} className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: "var(--ink-faint)" }} />
+                  <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••"
+                    className="pragya-focus w-full pl-9 pr-3 py-2.5 rounded-lg border text-sm pragya-glass" style={{ borderColor: "var(--line)" }} />
+                </div>
+              </Field>
+
+              {error && (
+                <div className="flex items-center gap-2 text-sm rounded-lg p-3 mb-4" style={{ background: "#fdeceb", color: "#b23b3b" }}>
+                  <AlertCircle size={15} /> {error}
+                </div>
+              )}
+
+              <button onClick={submit} className="pragya-focus pragya-btn-primary w-full py-3 rounded-xl font-semibold text-sm">
+                Log in as {tab}
+              </button>
+              <p className="text-[11px] text-center mt-3" style={{ color: "var(--ink-faint)" }}>
+                Preview build — any email and password will work.
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Nav                                                                  */
 /* ------------------------------------------------------------------ */
-function NavBar({ view, setView, role, setRole, mobileOpen, setMobileOpen }) {
+function NavBar({ view, setView, role, onLogout, mobileOpen, setMobileOpen }) {
   const navItems = [
     { key: "library", label: "Library", icon: LayoutGrid, show: true },
     { key: "builder", label: "Create activity", icon: Plus, show: role !== "Guest" },
@@ -528,14 +625,13 @@ function NavBar({ view, setView, role, setRole, mobileOpen, setMobileOpen }) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center rounded-full p-0.5" style={{ background: "rgba(255,255,255,0.1)" }}>
-              {["Guest", "Licensed Teacher", "Admin"].map(r => (
-                <button key={r} onClick={() => { setRole(r); setView("library"); }}
-                  className="pragya-focus px-3 py-1.5 rounded-full text-xs font-semibold transition-colors"
-                  style={{ background: role === r ? "var(--butter)" : "transparent", color: role === r ? "var(--plum-ink)" : "rgba(255,255,255,0.75)" }}>
-                  {r}
-                </button>
-              ))}
+            <div className="hidden sm:flex items-center gap-1 pl-3 pr-1 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.1)" }}>
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>
+                {role === "Guest" ? "Guest teacher" : role}
+              </span>
+              <button onClick={onLogout} className="pragya-focus flex items-center gap-1 pl-2 pr-2.5 py-1.5 rounded-full text-xs font-medium transition-colors" style={{ color: "rgba(255,255,255,0.75)" }}>
+                <LogOut size={13} /> Log out
+              </button>
             </div>
             <button className="pragya-focus md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
               <Menu size={22} />
@@ -545,14 +641,13 @@ function NavBar({ view, setView, role, setRole, mobileOpen, setMobileOpen }) {
 
         {mobileOpen && (
           <div className="md:hidden pb-4 pragya-fade-in">
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {["Guest", "Licensed Teacher", "Admin"].map(r => (
-                <button key={r} onClick={() => { setRole(r); setView("library"); }}
-                  className="pragya-focus px-3 py-1.5 rounded-full text-xs font-semibold"
-                  style={{ background: role === r ? "var(--butter)" : "rgba(255,255,255,0.1)", color: role === r ? "var(--plum-ink)" : "rgba(255,255,255,0.85)" }}>
-                  {r}
-                </button>
-              ))}
+            <div className="flex items-center justify-between mb-3 px-0.5">
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>
+                {role === "Guest" ? "Guest teacher" : role}
+              </span>
+              <button onClick={onLogout} className="pragya-focus flex items-center gap-1.5 text-xs font-medium" style={{ color: "rgba(255,255,255,0.85)" }}>
+                <LogOut size={14} /> Log out
+              </button>
             </div>
             <div className="flex flex-col gap-1">
               {navItems.filter(n => n.show).map(n => {
@@ -570,6 +665,7 @@ function NavBar({ view, setView, role, setRole, mobileOpen, setMobileOpen }) {
         )}
       </div>
       <div className="text-center py-1.5 text-[11px] font-medium tracking-wide" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>
+        Screen-free. Bilingual. Built for Bharat.
       </div>
     </div>
   );
@@ -583,6 +679,7 @@ function ActivityCard({ activity, onSelect }) {
     <button onClick={() => onSelect(activity.id)}
       className="pragya-card pragya-focus text-left rounded-2xl pragya-glass border overflow-hidden flex flex-col h-full"
       style={{ borderColor: "var(--line)" }}>
+      <div className="pragya-card-edge" />
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-1">
           <h3 className="display font-bold text-lg leading-snug" style={{ color: "var(--plum-ink)" }}>{activity.title}</h3>
@@ -600,6 +697,36 @@ function ActivityCard({ activity, onSelect }) {
         </div>
       </div>
     </button>
+  );
+}
+
+const GUEST_FREE_LIMIT = 3;
+
+function GuestPaywall({ teaserActivities, hiddenCount, onSubscribe }) {
+  return (
+    <div className="relative mt-4 rounded-2xl overflow-hidden">
+      {teaserActivities.length > 0 && (
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 select-none" style={{ filter: "blur(6px)", opacity: 0.5 }} aria-hidden="true">
+          {teaserActivities.map(a => <ActivityCard key={a.id} activity={a} onSelect={() => {}} />)}
+        </div>
+      )}
+      <div className="absolute inset-0 flex items-center justify-center p-6">
+        <div className="pragya-glass rounded-2xl border p-6 text-center max-w-sm pragya-fade-in" style={{ borderColor: "var(--line)" }}>
+          <div className="w-11 h-11 mx-auto rounded-full flex items-center justify-center mb-3" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>
+            <Lock size={18} />
+          </div>
+          <p className="font-bold mb-1" style={{ color: "var(--plum-ink)" }}>
+            {hiddenCount} more {hiddenCount === 1 ? "activity" : "activities"} waiting
+          </p>
+          <p className="text-sm mb-4" style={{ color: "var(--ink-soft)" }}>
+            Subscribe to unlock the full Pragya AI library — every class level, every concept.
+          </p>
+          <button onClick={onSubscribe} className="pragya-focus pragya-btn-primary px-5 py-2.5 rounded-xl text-sm font-semibold">
+            Subscribe to unlock
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -640,8 +767,17 @@ function FilterPanel({ filters, toggleFilter, clearFilters }) {
   );
 }
 
-function LibraryView({ activities, customActivities, role, onSelect, onCreate, filters, toggleFilter, clearFilters, search, setSearch, sortBy, setSortBy, mineOnly, setMineOnly }) {
+function LibraryView({ activities, customActivities, role, onSelect, onCreate, filters, toggleFilter, clearFilters, search, setSearch, sortBy, setSortBy, mineOnly, setMineOnly, onSubscribe }) {
   const [filtersOpen, setFiltersOpen] = useState(false);
+
+  // Fixed regardless of search/filters/sort, so a guest can't search their way past the paywall.
+  const guestFreeIds = useMemo(() => {
+    return [...activities]
+      .filter(a => a.status === "Published")
+      .sort((a, b) => (a.curriculum_sequence || 99) - (b.curriculum_sequence || 99))
+      .slice(0, GUEST_FREE_LIMIT)
+      .map(a => a.id);
+  }, [activities]);
 
   const visible = useMemo(() => {
     let list = mineOnly ? customActivities : activities.filter(a => a.status === "Published" || role === "Admin");
@@ -673,6 +809,7 @@ function LibraryView({ activities, customActivities, role, onSelect, onCreate, f
       <div className="mb-6">
         <h1 className="display font-extrabold text-3xl mb-1" style={{ color: "var(--plum-ink)" }}>Activity library</h1>
         <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
+          {mineOnly ? "Activities you've created, visible only to you and your school." : "Every Pragya AI activity, in curriculum order — screen-free and ready to run."}
         </p>
       </div>
 
@@ -725,9 +862,21 @@ function LibraryView({ activities, customActivities, role, onSelect, onCreate, f
               )}
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-              {visible.map(a => <ActivityCard key={a.id} activity={a} onSelect={onSelect} />)}
-            </div>
+            <>
+              <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                {(role === "Guest" ? visible.filter(a => guestFreeIds.includes(a.id)) : visible).map(a => <ActivityCard key={a.id} activity={a} onSelect={onSelect} />)}
+              </div>
+              {role === "Guest" && visible.some(a => !guestFreeIds.includes(a.id)) && (() => {
+                const locked = visible.filter(a => !guestFreeIds.includes(a.id));
+                return (
+                  <GuestPaywall
+                    teaserActivities={locked.slice(0, 3)}
+                    hiddenCount={locked.length}
+                    onSubscribe={onSubscribe}
+                  />
+                );
+              })()}
+            </>
           )}
         </div>
       </div>
@@ -1343,8 +1492,8 @@ function AdminView({ activities, setActivities, customActivities, onDownload }) 
 /* Root                                                                 */
 /* ------------------------------------------------------------------ */
 export default function App() {
-  const [role, setRole] = useState("Licensed Teacher");
-  const [view, setView] = useState("library");
+  const [role, setRole] = useState(null);
+  const [view, setView] = useState("login");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activities, setActivities] = useState(SEED_ACTIVITIES);
   const [customActivities, setCustomActivities] = useState([]);
@@ -1369,6 +1518,8 @@ export default function App() {
   const allForDetail = [...activities, ...customActivities];
   const selected = allForDetail.find(a => a.id === selectedId);
 
+  const handleLogin = (r) => { setRole(r); setView("library"); };
+  const handleLogout = () => { setRole(null); setView("login"); setMineOnly(false); setSelectedId(null); setMobileOpen(false); };
   const handleSelect = (id) => { setSelectedId(id); setView("detail"); window.scrollTo?.(0, 0); };
   const handleSaved = (newActivity, status) => {
     setCustomActivities(prev => [...prev, newActivity]);
@@ -1381,27 +1532,34 @@ export default function App() {
       <Tokens />
       <GlassBackdrop />
       <div className="relative z-10">
-        <NavBar view={view} setView={setView} role={role} setRole={setRole} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+        {!role ? (
+          <LoginView onLogin={handleLogin} />
+        ) : (
+          <>
+            <NavBar view={view} setView={setView} role={role} onLogout={handleLogout} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
-        {view === "library" && (
-          <LibraryView
-            activities={activities} customActivities={customActivities} role={role}
-            onSelect={handleSelect} onCreate={() => setView("builder")}
-            filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters}
-            search={search} setSearch={setSearch} sortBy={sortBy} setSortBy={setSortBy}
-            mineOnly={mineOnly} setMineOnly={setMineOnly}
-          />
-        )}
+            {view === "library" && (
+              <LibraryView
+                activities={activities} customActivities={customActivities} role={role}
+                onSelect={handleSelect} onCreate={() => setView("builder")}
+                filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters}
+                search={search} setSearch={setSearch} sortBy={sortBy} setSortBy={setSortBy}
+                mineOnly={mineOnly} setMineOnly={setMineOnly}
+                onSubscribe={() => showToast("Subscribing isn't available in this preview — this is where checkout would go.")}
+              />
+            )}
 
-        {view === "detail" && (
-          <DetailView activity={selected} allActivities={allForDetail} role={role}
-            onBack={() => setView("library")} onSelect={handleSelect} onDownload={handleDownload} />
-        )}
+            {view === "detail" && (
+              <DetailView activity={selected} allActivities={allForDetail} role={role}
+                onBack={() => setView("library")} onSelect={handleSelect} onDownload={handleDownload} />
+            )}
 
-        {view === "builder" && <BuilderView role={role} onSaved={handleSaved} />}
+            {view === "builder" && <BuilderView role={role} onSaved={handleSaved} />}
 
-        {view === "admin" && role === "Admin" && (
-          <AdminView activities={activities} setActivities={setActivities} customActivities={customActivities} onDownload={handleDownload} />
+            {view === "admin" && role === "Admin" && (
+              <AdminView activities={activities} setActivities={setActivities} customActivities={customActivities} onDownload={handleDownload} />
+            )}
+          </>
         )}
 
         <Toast message={toast} onClose={() => setToast("")} />
