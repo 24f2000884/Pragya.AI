@@ -248,152 +248,6 @@ const SEED_ACTIVITIES = [
       { step_number: 4, time_mins: 7, instruction: "THE BREAK — silently shift the underlying rule partway through. The class's next prediction, made with total confidence, is wrong.", is_break: true },
       { step_number: 5, time_mins: 5, instruction: "Ask why the guess failed. Trace it back to the rule, not bad luck. Close with the question.", is_break: false }
     ]
-  },
-  {
-    id: "jo-bolo-wahi", title: "Jo Bolo Wahi", subtitle: "Exactly what you say",
-    status: "Published", class_level: "Classes 1–3", duration_mins: 30, language: "Bilingual",
-    materials: "None — instructions only", curriculum_tier: "Foundational (1–3)", curriculum_sequence: 4,
-    ai_concept: "Exact Instructions",
-    big_idea: "A machine does exactly what it's told, not what you meant.",
-    kids_walk_away_knowing: "Instructions must be precise, because there's no 'obviously' for a machine.",
-    misconception: "If my instruction makes sense to me, it will make sense to the 'robot' too.",
-    safety_note: "Clear the path the 'robot' will walk of any trip hazards before starting.",
-    setting: "One student acts as a literal-minded 'robot' following a partner's spoken instructions.",
-    the_break: "A vaguely worded instruction, like 'go to the door', sends the 'robot' the wrong way entirely.",
-    ask_at_the_end: "Jo maine kaha, kya wahi maine socha bhi tha?",
-    why_its_real_ai: "AI systems follow instructions literally, which is exactly why precise prompts matter.",
-    shape: {
-      setup: "One student is the 'robot': it does only, and exactly, what it is told, one step at a time.",
-      run: "A partner gives short, precise instructions and the robot follows them successfully.",
-      brk: "A vague instruction is given, and the literal-minded robot goes the wrong way."
-    },
-    script: [
-      { step_number: 1, time_mins: 4, instruction: "Choose a 'robot' student. Explain the rule: the robot does only and exactly what it is told.", is_break: false },
-      { step_number: 2, time_mins: 8, instruction: "A partner gives short, precise instructions ('take two steps forward') to guide the robot to a target.", is_break: false },
-      { step_number: 3, time_mins: 6, instruction: "Rotate pairs. Instructions get slightly more complex, and the robot keeps succeeding when they are precise.", is_break: false },
-      { step_number: 4, time_mins: 7, instruction: "THE BREAK — a pair gives a vague instruction ('go to the door'). The robot takes it literally and goes the wrong way.", is_break: true },
-      { step_number: 5, time_mins: 5, instruction: "Unpack why the vague instruction failed. Ask the closing question.", is_break: false }
-    ]
-  },
-  {
-    id: "jaadu-ki-peti", title: "Jaadu ki Peti", subtitle: "The magic box",
-    status: "Published", class_level: "Classes 1–3", duration_mins: 35, language: "Bilingual",
-    materials: "Cardboard + cards", curriculum_tier: "Foundational (1–3)", curriculum_sequence: 5,
-    ai_concept: "Input-Rule-Output",
-    big_idea: "Every output comes from an input passing through a hidden rule.",
-    kids_walk_away_knowing: "Input, rule, output — that's the shape of every machine, including AI.",
-    misconception: "The box is doing something magical, not following a rule.",
-    safety_note: null,
-    setting: "A decorated box that transforms cards fed into it, according to a secret rule.",
-    the_break: "A card is fed in that the secret rule wasn't designed for, and the box gives a nonsense output.",
-    ask_at_the_end: "Jaadu ki peti mein jaadu hai, ya sirf ek chhupa hua niyam?",
-    why_its_real_ai: "Every AI model is fundamentally input, then a learned rule, then output.",
-    shape: {
-      setup: "A decorated box is introduced. Cards go in one side, changed cards come out the other.",
-      run: "Students feed in cards and predict what comes out. They begin to guess the hidden rule.",
-      brk: "A card outside the rule's design goes in, and the box produces something nonsensical."
-    },
-    script: [
-      { step_number: 1, time_mins: 4, instruction: "Introduce the box. Demonstrate: a card goes in one side, a transformed card comes out the other.", is_break: false },
-      { step_number: 2, time_mins: 8, instruction: "Students feed in cards one at a time and try to guess the hidden rule from the outputs.", is_break: false },
-      { step_number: 3, time_mins: 8, instruction: "Once the rule is guessed, students test it by predicting the output before the card is revealed.", is_break: false },
-      { step_number: 4, time_mins: 8, instruction: "THE BREAK — feed in a card the rule was never built for. The box's output makes no sense.", is_break: true },
-      { step_number: 5, time_mins: 7, instruction: "Reveal the actual rule and discuss why that card broke it. Close with the question.", is_break: false }
-    ]
-  },
-  {
-    id: "bloop-kaun", title: "Bloop Kaun?", subtitle: "Who is Bloop?",
-    status: "Published", class_level: "Class 3+", duration_mins: 45, language: "Bilingual",
-    materials: "Picture cards + one trick card", curriculum_tier: "Foundational (1–3)", curriculum_sequence: 6,
-    ai_concept: "Learning from Examples",
-    big_idea: "A model that learns from examples is only as good as the examples it saw.",
-    kids_walk_away_knowing: "Learning from examples can fail on the one example nobody showed it.",
-    misconception: "Once a model has learned a category, it will always get it right.",
-    safety_note: null,
-    setting: "One student is trained, using only example pictures, to recognise a made-up creature called Bloop.",
-    the_break: "A new picture that doesn't resemble any training example completely stumps the trained student.",
-    ask_at_the_end: "Bloop ko pehchanna seekha, lekin naye Bloop ko kaise pehchanoge?",
-    why_its_real_ai: "Machine learning models generalise from training examples and can fail on unfamiliar cases, exactly like this.",
-    shape: {
-      setup: "One student is the 'model'. They are shown several example pictures labelled Bloop or Not Bloop.",
-      run: "New pictures are shown one at a time. The 'model' correctly sorts each into Bloop or Not Bloop.",
-      brk: "A picture unlike any training example appears, and the 'model' cannot confidently classify it."
-    },
-    script: [
-      { step_number: 1, time_mins: 5, instruction: "Explain the game: one student will 'learn' to spot Bloop from examples only, no definition given.", is_break: false },
-      { step_number: 2, time_mins: 10, instruction: "Show 6–8 training pictures, each labelled Bloop or Not Bloop, one at a time.", is_break: false },
-      { step_number: 3, time_mins: 10, instruction: "Test the 'model' with new pictures similar to the training set. It classifies them correctly, building confidence.", is_break: false },
-      { step_number: 4, time_mins: 12, instruction: "THE BREAK — show a picture very different from anything in training. The 'model' hesitates or gets it wrong.", is_break: true },
-      { step_number: 5, time_mins: 8, instruction: "Discuss what made this picture different, and why examples alone weren't enough. Ask the closing question.", is_break: false }
-    ]
-  },
-  {
-    id: "tota-aur-bhai", title: "Tota aur Bhai", subtitle: "Parrot and brother",
-    status: "Published", class_level: "Classes 6–8", duration_mins: 40, language: "Bilingual",
-    materials: "Mixed objects, paper", curriculum_tier: "Middle School", curriculum_sequence: 7,
-    ai_concept: "Learning from Examples",
-    big_idea: "Two learners can see similar examples and still form different rules.",
-    kids_walk_away_knowing: "The rule a model learns depends on exactly which examples it was shown.",
-    misconception: "Learning from the same kind of data always produces the same understanding.",
-    safety_note: null,
-    setting: "Two students, Tota and Bhai, are each 'trained' on a slightly different set of examples.",
-    the_break: "Given the same new case, Tota and Bhai give confidently different answers, both defensible from their own training.",
-    ask_at_the_end: "Dono ne seekha, phir alag alag jawab kyun diya?",
-    why_its_real_ai: "Different training data produces different model behaviour, even for the same task.",
-    shape: {
-      setup: "Tota and Bhai each study a separate stack of example cards for the same category.",
-      run: "Both are tested on shared examples and largely agree, seeming equally 'trained'.",
-      brk: "A new case is shown to both. Tota and Bhai give opposite, equally reasoned answers."
-    },
-    script: [
-      { step_number: 1, time_mins: 5, instruction: "Pick two students, Tota and Bhai. Give each a different (overlapping but not identical) set of example cards for the same category, studied privately.", is_break: false },
-      { step_number: 2, time_mins: 8, instruction: "Test both on a few shared, easy cases. They agree, and the class assumes they've 'learned the same thing'.", is_break: false },
-      { step_number: 3, time_mins: 8, instruction: "Introduce a slightly ambiguous case and have both answer aloud, explaining their reasoning.", is_break: false },
-      { step_number: 4, time_mins: 12, instruction: "THE BREAK — present a genuinely new case. Tota and Bhai give confidently opposite answers, each fully explainable by their own training set.", is_break: true },
-      { step_number: 5, time_mins: 7, instruction: "Trace each answer back to what each student was actually shown. Ask the closing question.", is_break: false }
-    ]
-  },
-  {
-    id: "sabzi-wale-ka-dimaag", title: "Sabzi Wale Ka Dimaag", subtitle: "The vegetable seller's brain",
-    status: "Published", class_level: "Classes 6–8", duration_mins: 45, language: "Bilingual",
-    materials: "Mixed objects, paper", curriculum_tier: "Middle School", curriculum_sequence: 8,
-    ai_concept: "Data Bias",
-    big_idea: "A rule learned from a narrow slice of the world carries that slice's blind spots.",
-    kids_walk_away_knowing: "Bias isn't intentional, it's baked in by what data the rule was built from.",
-    misconception: "A rule that works well in one place will work everywhere.",
-    safety_note: null,
-    setting: "A 'vegetable seller' student who prices vegetables from years of local pattern-spotting.",
-    the_break: "The seller's pricing rule badly misjudges a vegetable from outside their usual market experience.",
-    ask_at_the_end: "Sabzi wale ka andaza kab galat hota hai, aur kyun?",
-    why_its_real_ai: "This is data bias in action: a model trained on a narrow slice of the world underperforms outside it.",
-    shape: {
-      setup: "A student 'sabzi wale' is trained only on prices from one local market's vegetables.",
-      run: "They confidently and correctly price a stream of familiar, local vegetables.",
-      brk: "An unfamiliar vegetable from outside their market experience is priced badly wrong."
-    },
-    script: [
-      { step_number: 1, time_mins: 5, instruction: "One student plays the vegetable seller, trained only on prices from their own familiar local market.", is_break: false },
-      { step_number: 2, time_mins: 10, instruction: "Present a stream of common local vegetables. The seller prices each one quickly and correctly.", is_break: false },
-      { step_number: 3, time_mins: 8, instruction: "Increase difficulty slightly with less common local produce. The seller still does reasonably well.", is_break: false },
-      { step_number: 4, time_mins: 12, instruction: "THE BREAK — introduce a vegetable from outside the seller's market experience. Their price guess is badly wrong.", is_break: true },
-      { step_number: 5, time_mins: 10, instruction: "Discuss why the guess failed, and connect it to what data the seller had actually seen. Ask the closing question.", is_break: false }
-    ]
-  },
-  {
-    id: "seedha-jawab-machine", title: "Seedha Jawab Machine", subtitle: "The straight-answer machine",
-    status: "In Development", class_level: "Classes 6–8", duration_mins: 40, language: "Bilingual",
-    materials: "To be confirmed", curriculum_tier: "Middle School", curriculum_sequence: 9,
-    ai_concept: "Decision Making",
-    big_idea: "In development — this activity's brief is still being finalised by the Pragya AI team.",
-    kids_walk_away_knowing: "To be confirmed.",
-    misconception: "To be confirmed.",
-    safety_note: null,
-    setting: "To be confirmed.",
-    the_break: "To be confirmed.",
-    ask_at_the_end: "To be confirmed.",
-    why_its_real_ai: "To be confirmed.",
-    shape: null,
-    script: []
   }
 ];
 
@@ -502,9 +356,9 @@ function ShapeOfIt({ activity }) {
 /* Login                                                                */
 /* ------------------------------------------------------------------ */
 const ROLE_INFO = {
-  "Licensed Teacher": { icon: GraduationCap, tabLabel: "Licensed Teacher", blurb: "Full access to the official library, downloads, and your own activity builder." },
-  "Admin": { icon: Settings, tabLabel: "Admin", blurb: "Manage the official library, review submissions, and publish new activities." },
-  "Guest": { icon: Users, tabLabel: "Guest teacher", blurb: "No account needed — preview a handful of activities right away." }
+  "Licensed Teacher": { icon: GraduationCap, tabLabel: "Licensed Teacher"},
+  "Admin": { icon: Settings, tabLabel: "Admin"},
+  "Guest": { icon: Users, tabLabel: "Guest teacher"}
 };
 
 function LoginView({ onLogin }) {
@@ -579,7 +433,7 @@ function LoginView({ onLogin }) {
                 Log in as {tab}
               </button>
               <p className="text-[11px] text-center mt-3" style={{ color: "var(--ink-faint)" }}>
-                Preview build — any email and password will work.
+                Preview build
               </p>
             </>
           )}
@@ -665,7 +519,7 @@ function NavBar({ view, setView, role, onLogout, mobileOpen, setMobileOpen }) {
         )}
       </div>
       <div className="text-center py-1.5 text-[11px] font-medium tracking-wide" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>
-        Screen-free. Bilingual. Built for Bharat.
+      Built for Bharat.
       </div>
     </div>
   );
@@ -809,7 +663,6 @@ function LibraryView({ activities, customActivities, role, onSelect, onCreate, f
       <div className="mb-6">
         <h1 className="display font-extrabold text-3xl mb-1" style={{ color: "var(--plum-ink)" }}>Activity library</h1>
         <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
-          {mineOnly ? "Activities you've created, visible only to you and your school." : "Every Pragya AI activity, in curriculum order — screen-free and ready to run."}
         </p>
       </div>
 
