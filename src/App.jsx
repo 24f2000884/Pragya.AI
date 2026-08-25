@@ -356,9 +356,9 @@ function ShapeOfIt({ activity }) {
 /* Login                                                                */
 /* ------------------------------------------------------------------ */
 const ROLE_INFO = {
-  "Licensed Teacher": { icon: GraduationCap, tabLabel: "Licensed Teacher"},
-  "Admin": { icon: Settings, tabLabel: "Admin"},
-  "Guest": { icon: Users, tabLabel: "Guest teacher"}
+  "Licensed Teacher": {tabLabel: "Licensed Teacher"},
+  "Admin": {tabLabel: "Admin"},
+  "Guest": {tabLabel: "Guest teacher"}
 };
 
 function LoginView({ onLogin }) {
@@ -573,7 +573,7 @@ function GuestPaywall({ teaserActivities, hiddenCount, onSubscribe }) {
             {hiddenCount} more {hiddenCount === 1 ? "activity" : "activities"} waiting
           </p>
           <p className="text-sm mb-4" style={{ color: "var(--ink-soft)" }}>
-            Subscribe to unlock the full Pragya AI library — every class level, every concept.
+            Subscribe to unlock the full Pragya AI library.
           </p>
           <button onClick={onSubscribe} className="pragya-focus pragya-btn-primary px-5 py-2.5 rounded-xl text-sm font-semibold">
             Subscribe to unlock
