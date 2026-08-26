@@ -411,6 +411,7 @@ function LoginView({ onLogin }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
+      <LoginPhotoCarousel />
       <div className="w-full max-w-md pragya-fade-in">
         <div className="text-center mb-6">
           <h1 className="display font-extrabold text-2xl" style={{ color: "#352d49", background: "rgba(247,227,161,0.8)", display:"inline" }}>Stravelle Presents</h1>
