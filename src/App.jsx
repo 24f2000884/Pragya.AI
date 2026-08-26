@@ -426,8 +426,7 @@ function LoginView({ onLogin }) {
                 className="pragya-focus flex-1 px-2 py-1.5 rounded-lg text-xs font-semibold transition-all"
                 style={{ background: tab === r ? "rgba(255,255,255,0.85)" : "transparent", color: "var(--plum)", boxShadow: tab === r ? "0 3px 12px rgba(42,36,56,0.14)" : "none" }}>
                 {ROLE_INFO[r].tabLabel}
-              </button>
-            ))}
+              </button>a
           </div>
 
           <div className="flex items-start gap-2.5 mb-5">
@@ -492,7 +491,6 @@ function NavBar({ view, setView, role, onLogout, mobileOpen, setMobileOpen }) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           <button onClick={() => setView("library")} className="pragya-focus flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>PA</div>
             <div className="text-left leading-tight hidden sm:block">
               <div className="display font-bold text-white text-sm">Pragya AI</div>
               <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.6)" }}>Activity Platform</div>
@@ -1433,7 +1431,7 @@ export default function App() {
                 filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters}
                 search={search} setSearch={setSearch} sortBy={sortBy} setSortBy={setSortBy}
                 mineOnly={mineOnly} setMineOnly={setMineOnly}
-                onSubscribe={() => showToast("Subscribing isn't available in this preview — this is where checkout would go.")}
+                onSubscribe={() => showToast("Subscribing isn't available in this preview.")}
               />
             )}
 
