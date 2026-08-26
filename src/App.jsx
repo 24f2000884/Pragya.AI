@@ -415,7 +415,7 @@ function LoginView({ onLogin }) {
       <div className="w-full max-w-md pragya-fade-in">
         <div className="text-center mb-6">
           <h1 className="display font-extrabold text-2xl" style={{ color: "#352d49", background: "rgba(247,227,161,0.8)", display:"inline" }}>Stravelle Presents</h1>
-          <h2 className="display font-extrabold text-2xl" style={{ color: "var(--white)" }}>Pragya AI</h2>
+          <h2 className="display font-extrabold text-4xl" style={{ color: "var(--white)" }}>Pragya AI</h2>
           <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.75)" }}>Screen-free AI activities for your classroom.</p>
         </div>
 
