@@ -379,8 +379,7 @@ function LoginView({ onLogin }) {
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md pragya-fade-in">
         <div className="text-center mb-6">
-          <div className="w-12 h-12 mx-auto rounded-xl flex items-center justify-center font-bold text-sm mb-3" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>PA</div>
-          <h1 className="display font-extrabold text-2xl" style={{ color: "purple" }}>Stravelle Presents</h1>
+          <h1 className="display font-extrabold text-2xl" style={{ color: "var(--lavender-card)" }}>Stravelle Presents</h1>
           <h2 className="display font-extrabold text-2xl" style={{ color: "var(--plum-ink)" }}>Pragya AI</h2>
           <p className="text-sm mt-1" style={{ color: "var(--ink-soft)" }}>Screen-free AI activities for your classroom.</p>
         </div>
