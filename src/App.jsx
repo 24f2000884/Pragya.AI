@@ -433,7 +433,7 @@ function LoginView({ onLogin }) {
                 Log in as {tab}
               </button>
               <p className="text-[11px] text-center mt-3" style={{ color: "var(--ink-faint)" }}>
-                Preview build
+                Preview build: for the purpose of prototype kindly type in "admin" or "teacher" or "guest" as email and any password to continue.
               </p>
             </>
           )}
