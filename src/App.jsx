@@ -426,8 +426,11 @@ function LoginView({ onLogin }) {
                 className="pragya-focus flex-1 px-2 py-1.5 rounded-lg text-xs font-semibold transition-all"
                 style={{ background: tab === r ? "rgba(255,255,255,0.85)" : "transparent", color: "var(--plum)", boxShadow: tab === r ? "0 3px 12px rgba(42,36,56,0.14)" : "none" }}>
                 {ROLE_INFO[r].tabLabel}
-              </button>a
+
+              </button>
+            ))}
           </div>
+
 
           <div className="flex items-start gap-2.5 mb-5">
             <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--lavender-card)", color: "var(--plum)" }}>
