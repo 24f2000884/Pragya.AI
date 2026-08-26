@@ -389,7 +389,7 @@ function LoginPhotoCarousel({ images = CAROUSEL_IMAGES, intervalMs = 5000 }) {
           style={{ opacity: i === index ? 1 : 0, transitionDuration: "1800ms" }}
         />
       ))}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(42,36,56,0.70) 0%, rgba(42,36,56,0.60) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(42,36,56,0.85) 0%, rgba(42,36,56,0.85) 100%)" }} />
     </div>
   );
 }
