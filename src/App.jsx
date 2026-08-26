@@ -386,7 +386,7 @@ function LoginPhotoCarousel({ images = CAROUSEL_IMAGES, intervalMs = 5000 }) {
           src={src}
           alt=""
           className="absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out"
-          style={{ opacity: i === index ? 1 : 0, transitionDuration: "1800ms" }}
+          style={{ opacity: i === index ? 1 : 0, transitionDuration: "1000ms" }}
         />
       ))}
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(42,36,56,0.85) 0%, rgba(42,36,56,0.85) 100%)" }} />
