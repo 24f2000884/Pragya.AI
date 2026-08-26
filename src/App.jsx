@@ -380,7 +380,8 @@ function LoginView({ onLogin }) {
       <div className="w-full max-w-md pragya-fade-in">
         <div className="text-center mb-6">
           <div className="w-12 h-12 mx-auto rounded-xl flex items-center justify-center font-bold text-sm mb-3" style={{ background: "var(--butter)", color: "var(--plum-ink)" }}>PA</div>
-          <h1 className="display font-extrabold text-2xl" style={{ color: "var(--plum-ink)" }}>Pragya AI</h1>
+          <h1 className="display font-extrabold text-2xl" style={{ color: "purple" }}>Stravelle Presents</h1>
+          <h2 className="display font-extrabold text-2xl" style={{ color: "var(--plum-ink)" }}>Pragya AI</h2>
           <p className="text-sm mt-1" style={{ color: "var(--ink-soft)" }}>Screen-free AI activities for your classroom.</p>
         </div>
 
@@ -433,7 +434,7 @@ function LoginView({ onLogin }) {
                 Log in as {tab}
               </button>
               <p className="text-[11px] text-center mt-3" style={{ color: "var(--ink-faint)" }}>
-                Preview build: for the purpose of prototype kindly type in "admin" or "teacher" or "guest" as email and any password to continue.
+                Preview build: for the purpose of prototype kindly type in "admin" as email and 123 as password to continue.
               </p>
             </>
           )}
