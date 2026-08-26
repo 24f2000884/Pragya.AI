@@ -361,6 +361,40 @@ const ROLE_INFO = {
   "Guest": { icon: Users, tabLabel: "Guest teacher", blurb: "Preview a handful of activities right away." }
 };
 
+const CAROUSEL_IMAGES = [
+  "/carousel/photo1.jpg",
+  "/carousel/photo2.jpg",
+  "/carousel/photo3.jpg",
+  "/carousel/photo4.jpg",
+  "/carousel/photo5.jpg"
+];
+
+function LoginPhotoCarousel({ images = CAROUSEL_IMAGES, intervalMs = 5000 }) {
+  const [index, setIndex] = useState(0);
+ 
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const id = setInterval(() => setIndex(i => (i + 1) % images.length), intervalMs);
+    return () => clearInterval(id);
+  }, [images.length, intervalMs]);
+ 
+  return (
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[var(--plum-ink)]" aria-hidden="true">
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out"
+          style={{ opacity: i === index ? 1 : 0, transitionDuration: "1800ms" }}
+        />
+      ))}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(42,36,56,0.55) 0%, rgba(42,36,56,0.72) 100%)" }} />
+    </div>
+  );
+}
+
+
 function LoginView({ onLogin }) {
   const [tab, setTab] = useState("Licensed Teacher");
   const [email, setEmail] = useState("");
@@ -379,7 +413,7 @@ function LoginView({ onLogin }) {
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md pragya-fade-in">
         <div className="text-center mb-6">
-          <h1 className="display font-extrabold text-2xl" style={{ color: "#352d49", backgroundcolor: "yellow", display:"inline" }}>Stravelle Presents</h1>
+          <h1 className="display font-extrabold text-2xl" style={{ color: "#352d49", background: "yellow", display:"inline" }}>Stravelle Presents</h1>
           <h2 className="display font-extrabold text-2xl" style={{ color: "var(--plum-ink)" }}>Pragya AI</h2>
           <p className="text-sm mt-1" style={{ color: "var(--ink-soft)" }}>Screen-free AI activities for your classroom.</p>
         </div>
