@@ -416,7 +416,7 @@ function LoginView({ onLogin }) {
         <div className="text-center mb-6">
           <h1 className="display font-extrabold text-2xl" style={{ color: "#352d49", background: "rgba(247,227,161,0.8)", display:"inline" }}>Stravelle Presents</h1>
           <h2 className="display font-extrabold text-4xl" style={{ color: "var(--white)" }}>Pragya AI</h2>
-          <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.75)" }}>Screen-free AI activities for your classroom.</p>
+          <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.75)" }}>Promoting AI literacy for your classroom.</p>
         </div>
 
         <div className="rounded-3xl pragya-glass border p-6" style={{ borderColor: "var(--line)" }}>
@@ -495,7 +495,7 @@ function NavBar({ view, setView, role, onLogout, mobileOpen, setMobileOpen }) {
         <div className="flex items-center justify-between h-16">
           <button onClick={() => setView("library")} className="pragya-focus flex items-center gap-2.5">
             <div className="text-left leading-tight hidden sm:block">
-              <div className="display font-bold text-white text-sm">Pragya AI</div>
+              <div className="display font-bold text-white text-sm"> Stravelle Presents Pragya AI</div>
               <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.6)" }}>Activity Platform</div>
             </div>
           </button>
