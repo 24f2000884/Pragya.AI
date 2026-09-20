@@ -1380,7 +1380,6 @@ function AdminView({ activities, setActivities, customActivities, onDownload }) 
 /* ------------------------------------------------------------------ */
 /* Root                                                                 */
 /* ------------------------------------------------------------------ */
-import { useState } from "react";
 import HomePage from "./HomePage.jsx";
 export default function App() {
   const [entered, setEntered] = useState(false);
