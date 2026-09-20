@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
+import HomePage from "./HomePage.jsx";
 import {
   Search, SlidersHorizontal, X, ChevronRight, ChevronLeft, Download,
   Plus, Check, ArrowRight, ArrowLeft, LayoutGrid, Settings, Sparkles,
@@ -1231,7 +1232,7 @@ function BuilderView({ role, onSaved }) {
   const [extra, setExtra] = useState({ adjust_for_class: "", ask_at_the_end: "", materials_list: "", safety_note: "" });
   const [saved, setSaved] = useState(null);
 
-  React.useEffect(() => { setExtra(e => ({ ...e, ask_at_the_end: blueprint.ask_at_the_end, safety_note: blueprint.safety_note })); }, [step === 3]);
+  React.useEffect(() => { setExtra(e => ({ ...e, ask_at_the_end: blueprint.ask_at_the_end, safety_note: blueprint.safety_note })); }, [blueprint.ask_at_the_end, blueprint.safety_note]);
 
   const steps = ["Blueprint", "Review", "Script", "Save"];
 
@@ -1380,12 +1381,10 @@ function AdminView({ activities, setActivities, customActivities, onDownload }) 
 /* ------------------------------------------------------------------ */
 /* Root                                                                 */
 /* ------------------------------------------------------------------ */
-import HomePage from "./HomePage.jsx";
+
+
 export default function App() {
   const [entered, setEntered] = useState(false);
-  if (!entered) {
-    return <HomePage onLogin={() => setEntered(true)} />;
-  }
   const [role, setRole] = useState(null);
   const [view, setView] = useState("login");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -1396,67 +1395,161 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("sequence");
   const [toast, setToast] = useState("");
-  const [filters, setFilters] = useState(() => Object.fromEntries(FILTER_GROUPS.map(g => [g.key, new Set()])));
+  const [filters, setFilters] = useState(() =>
+    Object.fromEntries(
+      FILTER_GROUPS.map(g => [g.key, new Set()])
+    )
+  );
 
   const toggleFilter = (key, value) => {
     setFilters(f => {
       const next = new Set(f[key]);
       next.has(value) ? next.delete(value) : next.add(value);
-      return { ...f, [key]: next };
+
+      return {
+        ...f,
+        [key]: next
+      };
     });
   };
-  const clearFilters = () => setFilters(Object.fromEntries(FILTER_GROUPS.map(g => [g.key, new Set()])));
 
-  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(""), 2800); };
+  const clearFilters = () => {
+    setFilters(
+      Object.fromEntries(
+        FILTER_GROUPS.map(g => [g.key, new Set()])
+      )
+    );
+  };
+
+  const showToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2800);
+  };
 
   const allForDetail = [...activities, ...customActivities];
-  const selected = allForDetail.find(a => a.id === selectedId);
 
-  const handleLogin = (r) => { setRole(r); setView("library"); };
-  const handleLogout = () => { setRole(null); setView("login"); setMineOnly(false); setSelectedId(null); setMobileOpen(false); };
-  const handleSelect = (id) => { setSelectedId(id); setView("detail"); window.scrollTo?.(0, 0); };
+  const selected = allForDetail.find(
+    a => a.id === selectedId
+  );
+
+  const handleLogin = (r) => {
+    setRole(r);
+    setView("library");
+  };
+
+  const handleLogout = () => {
+    setRole(null);
+    setView("login");
+    setMineOnly(false);
+    setSelectedId(null);
+    setMobileOpen(false);
+  };
+
+  const handleSelect = (id) => {
+    setSelectedId(id);
+    setView("detail");
+    window.scrollTo?.(0, 0);
+  };
+
   const handleSaved = (newActivity, status) => {
     setCustomActivities(prev => [...prev, newActivity]);
-    showToast(status === "submitted" ? "Activity submitted for review" : "Activity saved to your library");
+
+    showToast(
+      status === "submitted"
+        ? "Activity submitted for review"
+        : "Activity saved to your library"
+    );
   };
-  const handleDownload = (title) => showToast(`Downloaded: ${title} facilitator pack`);
+
+  const handleDownload = (title) => {
+    showToast(`Downloaded: ${title} facilitator pack`);
+  };
+
+  // Home page comes first.
+  if (!entered) {
+    return (
+      <HomePage
+        onLogin={() => setEntered(true)}
+      />
+    );
+  }
 
   return (
     <div className="pragya-root min-h-screen">
       <Tokens />
       <GlassBackdrop />
+
       <div className="relative z-10">
         {!role ? (
           <LoginView onLogin={handleLogin} />
         ) : (
           <>
-            <NavBar view={view} setView={setView} role={role} onLogout={handleLogout} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+            <NavBar
+              view={view}
+              setView={setView}
+              role={role}
+              onLogout={handleLogout}
+              mobileOpen={mobileOpen}
+              setMobileOpen={setMobileOpen}
+            />
 
             {view === "library" && (
               <LibraryView
-                activities={activities} customActivities={customActivities} role={role}
-                onSelect={handleSelect} onCreate={() => setView("builder")}
-                filters={filters} toggleFilter={toggleFilter} clearFilters={clearFilters}
-                search={search} setSearch={setSearch} sortBy={sortBy} setSortBy={setSortBy}
-                mineOnly={mineOnly} setMineOnly={setMineOnly}
-                onSubscribe={() => showToast("Subscribing isn't available in this preview.")}
+                activities={activities}
+                customActivities={customActivities}
+                role={role}
+                onSelect={handleSelect}
+                onCreate={() => setView("builder")}
+                filters={filters}
+                toggleFilter={toggleFilter}
+                clearFilters={clearFilters}
+                search={search}
+                setSearch={setSearch}
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                mineOnly={mineOnly}
+                setMineOnly={setMineOnly}
+                onSubscribe={() =>
+                  showToast(
+                    "Subscribing isn't available in this preview."
+                  )
+                }
               />
             )}
 
             {view === "detail" && (
-              <DetailView activity={selected} allActivities={allForDetail} role={role}
-                onBack={() => setView("library")} onSelect={handleSelect} onDownload={handleDownload} />
+              <DetailView
+                activity={selected}
+                allActivities={allForDetail}
+                role={role}
+                onBack={() => setView("library")}
+                onSelect={handleSelect}
+                onDownload={handleDownload}
+              />
             )}
 
-            {view === "builder" && <BuilderView role={role} onSaved={handleSaved} />}
+            {view === "builder" && (
+              <BuilderView
+                role={role}
+                onSaved={handleSaved}
+              />
+            )}
 
             {view === "admin" && role === "Admin" && (
-              <AdminView activities={activities} setActivities={setActivities} customActivities={customActivities} onDownload={handleDownload} />
+              <AdminView
+                activities={activities}
+                setActivities={setActivities}
+                customActivities={customActivities}
+                onDownload={handleDownload}
+              />
             )}
           </>
         )}
 
-        <Toast message={toast} onClose={() => setToast("")} />
+        <Toast
+          message={toast}
+          onClose={() => setToast("")}
+        />
       </div>
     </div>
   );
