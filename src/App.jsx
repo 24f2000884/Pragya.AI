@@ -355,16 +355,6 @@ function ShapeOfIt({ activity }) {
 /* ------------------------------------------------------------------ */
 /* Login                                                                */
 /* ------------------------------------------------------------------ */
-import { useState } from "react";
-import HomePage from "./HomePage.jsx";
-
-export default function App() {
-  const [entered, setEntered] = useState(false);
-
-  if (!entered) {
-    return <HomePage onLogin={() => setEntered(true)} />;
-  }
-}
 const ROLE_INFO = {
   "Licensed Teacher": { icon: GraduationCap, tabLabel: "Licensed Teacher", blurb: "Full access to the official library, downloads, and your own activity builder." },
   "Admin": { icon: Settings, tabLabel: "Admin", blurb: "Admin" },
@@ -1390,7 +1380,13 @@ function AdminView({ activities, setActivities, customActivities, onDownload }) 
 /* ------------------------------------------------------------------ */
 /* Root                                                                 */
 /* ------------------------------------------------------------------ */
+import { useState } from "react";
+import HomePage from "./HomePage.jsx";
 export default function App() {
+  const [entered, setEntered] = useState(false);
+  if (!entered) {
+    return <HomePage onLogin={() => setEntered(true)} />;
+  }
   const [role, setRole] = useState(null);
   const [view, setView] = useState("login");
   const [mobileOpen, setMobileOpen] = useState(false);
