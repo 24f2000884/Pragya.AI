@@ -312,10 +312,10 @@ export default function HomePage({ onLogin = () => {} }) {
             <div className="glass sheen pin rounded-[26px] p-5 sm:p-8">
               <div className="relative overflow-hidden rounded-[20px]">
               <img src={photo2} alt="Pragya AI" className="w-full h-full h-auto block" />
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-10 text-center">
-              <div className="torn mt-2 mb-4" style={{ background: "linear-gradient(100deg,var(--lavender),var(--butter-deep))" }} />
-              <p className="text-[13.5px] leading-relaxed text-center" style={{ color: "var(--ink-soft)" }}>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
+              <div className="torn mb-3" style={{ background: "linear-gradient(100deg,var(--lavender),var(--butter-deep))" }} />
+              <p className="text-[15px] sm:text-[17px] leading-relaxed" style={{ color: "white", textShadow: "0 2px 6px rgba(0,0,0,0.6)"}}>
                 A class works out a mechanism together, using nothing but what is already in the room.
               </p>
             </div>
