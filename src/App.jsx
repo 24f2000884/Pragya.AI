@@ -484,7 +484,7 @@ function LoginView({ onLogin }) {
 /* ------------------------------------------------------------------ */
 /* Nav                                                                  */
 /* ------------------------------------------------------------------ */
-function NavBar({ view, setView, role, onLogout, mobileOpen, setMobileOpen }) {
+function NavBar({ view, setView, role, onLogout, onHome, mobileOpen, setMobileOpen }) {
   const navItems = [
     { key: "library", label: "Library", icon: LayoutGrid, show: true },
     { key: "builder", label: "Create activity", icon: Plus, show: role !== "Guest" },
@@ -494,7 +494,7 @@ function NavBar({ view, setView, role, onLogout, mobileOpen, setMobileOpen }) {
     <div className="pragya-glass-nav sticky top-0 z-40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          <button onClick={() => setView("library")} className="pragya-focus flex items-center gap-2.5">
+          <button onClick={onHome} className="pragya-focus flex items-center gap-2.5">
             <div className="text-left leading-tight hidden sm:block">
               <div className="display font-bold text-white text-sm"> Stravelle Presents Pragya AI</div>
               <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.6)" }}>Activity Platform</div>
@@ -1400,6 +1400,12 @@ export default function App() {
       FILTER_GROUPS.map(g => [g.key, new Set()])
     )
   );
+  if (!entered) {
+    return <HomePage
+        onLogin={() => setEntered(true)}
+      />
+    ;
+  } 
 
   const toggleFilter = (key, value) => {
     setFilters(f => {
@@ -1465,15 +1471,6 @@ export default function App() {
     showToast(`Downloaded: ${title} facilitator pack`);
   };
 
-  // Home page comes first.
-  if (!entered) {
-    return (
-      <HomePage
-        onLogin={() => setEntered(true)}
-      />
-    );
-  }
-
   return (
     <div className="pragya-root min-h-screen">
       <Tokens />
@@ -1491,6 +1488,7 @@ export default function App() {
               onLogout={handleLogout}
               mobileOpen={mobileOpen}
               setMobileOpen={setMobileOpen}
+              onHome={() =>{ setEntered(false);setRole(null); setView("login"); setSelectedId(null); setMineOnly(false); setMobileOpen(false);}}
             />
 
             {view === "library" && (
