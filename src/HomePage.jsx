@@ -368,23 +368,10 @@ export default function HomePage({ onLogin = () => {} }) {
               The platform is simply where that work is kept, reviewed and handed to teachers. The
               initiative is the activities themselves, and the teaching they make possible.
             </p>
-
-            <div className="grid sm:grid-cols-3 gap-3 mt-8">
-              {[
-                ["0", "devices needed in the room to run any activity"],
-                ["40", "minutes is the usual length of a single activity"],
-                ["1", "reviewed collection every teacher draws from"],
-              ].map(([big, small], i) => (
-                <div key={i} className="glass pin rounded-2xl p-4">
-                  <div className="disp font-bold mb-1" style={{ fontSize: "1.9rem", color: "var(--plum)", lineHeight: 1.1 }}>{big}</div>
-                  <div className="text-[12.5px] leading-snug" style={{ color: "var(--ink-soft)" }}>{small}</div>
-                </div>
-              ))}
-            </div>
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="glass pin rounded-[24px] overflow-hidden">
+            <div className="glass pin rounded-[0 px] overflow-hidden">
               <div className="torn" style={{ background: "linear-gradient(100deg,var(--rose),var(--lavender))" }} />
               <div className="p-6">
                 <div className="disp font-bold text-[17px] mb-4">Who it is for</div>
@@ -433,7 +420,7 @@ export default function HomePage({ onLogin = () => {} }) {
           <div className="grid sm:grid-cols-2 gap-5">
             {FEATURES.map((f, i) => (
               <Reveal key={f.k} delay={i * 90}>
-                <div className="glass pin rounded-[24px] p-6 h-full flex gap-5">
+                <div className="glass pin rounded-[0 px] p-6 h-full flex gap-5">
                   <div className="flex-none rounded-2xl p-2.5" style={{ background: "rgba(255,255,255,.5)", border: "1px solid var(--line)" }}>
                     {art[f.k]}
                   </div>
@@ -469,7 +456,7 @@ export default function HomePage({ onLogin = () => {} }) {
           <div className="grid sm:grid-cols-3 gap-5 relative">
             {STEPS.map((s, i) => (
               <Reveal key={s.n} delay={i * 110}>
-                <div className="glass pin rounded-[24px] p-6 h-full">
+                <div className="glass pin rounded-[0 px] p-6 h-full">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-11 h-11 rounded-2xl flex items-center justify-center disp font-bold text-[15px]"
                       style={{ background: "linear-gradient(150deg,#4a4166,#2f2741)", color: "var(--butter)", boxShadow: "inset 0 1px 0 rgba(255,255,255,.22)" }}>
