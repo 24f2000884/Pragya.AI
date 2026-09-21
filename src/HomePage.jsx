@@ -311,7 +311,7 @@ export default function HomePage({ onLogin = () => {} }) {
           <Reveal delay={120}>
             <div className="glass sheen pin rounded-[26px] p-5 sm:p-8">
               <div className="relative overflow-hidden rounded-[20px]">
-              <img src={photo2} alt="Pragya AI" className="w-full h-full h-auto block" />
+              <img src={photo2} alt="Pragya AI" className="w-full h-full h-[350px] object-cover block" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
               <div className="torn mb-3" style={{ background: "linear-gradient(100deg,var(--lavender),var(--butter-deep))" }} />
