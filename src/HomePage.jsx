@@ -309,15 +309,6 @@ const MARQUEE = [
 function Mark({ light = false }) {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="relative w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden"
-        style={{ background: "linear-gradient(150deg,#FBEDBD,#E8C86A)", boxShadow: "inset 0 1px 0 rgba(255,255,255,.8), 0 3px 10px rgba(42,36,56,.22)" }}>
-        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="7" cy="8" r="2.6" fill="#2A2438" opacity=".85" />
-          <circle cx="17" cy="8" r="2.6" fill="#2A2438" opacity=".85" />
-          <circle cx="12" cy="17" r="2.6" fill="#2A2438" opacity=".85" />
-          <path d="M7 8h10M7 8l5 9M17 8l-5 9" stroke="#2A2438" strokeWidth="1.3" opacity=".55" fill="none" />
-        </svg>
-      </div>
       <div className="leading-tight">
         <div className="disp font-bold text-[15px]" style={{ color: light ? "#fff" : "var(--ink)" }}>Pragya AI</div>
         <div className="text-[10.5px] tracking-wide" style={{ color: light ? "rgba(255,255,255,.62)" : "var(--ink-faint)" }}>
