@@ -392,7 +392,7 @@ export default function HomePage({ onLogin = () => {} }) {
 
           <Reveal delay={120}>
             <div className="glass sheen pin rounded-[26px] p-5 sm:p-8">
-              <img src="assets/photo2.jpg" alt="Pragya AI"/>
+              <img src="assets\photo2.jpg" alt="Pragya AI"/>
               <div className="torn mt-2 mb-4" style={{ background: "linear-gradient(100deg,var(--lavender),var(--butter-deep))" }} />
               <p className="text-[13.5px] leading-relaxed text-center" style={{ color: "var(--ink-soft)" }}>
                 A class works out a mechanism together, using nothing but what is already in the room.
