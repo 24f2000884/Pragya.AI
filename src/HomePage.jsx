@@ -135,90 +135,7 @@ function Reveal({ children, delay = 0, className = "" }) {
 /* HERO ARTWORK                                                        */
 /* A class arranged in a circle, joined by string, working out a       */
 /* concept together. Decorative, not a preview of any one activity.    */
-/* ------------------------------------------------------------------ */
-function LearningCircle() {
-  const R = 108;
-  const CX = 190;
-  const CY = 150;
-  const seats = Array.from({ length: 14 }, (_, i) => {
-    const a = (i / 14) * Math.PI * 2 - Math.PI / 2;
-    return { x: CX + R * Math.cos(a), y: CY + R * Math.sin(a), i };
-  });
-  const chords = [
-    [0, 5], [5, 9], [9, 1], [1, 7], [7, 12], [12, 3],
-    [3, 10], [10, 6], [6, 13], [13, 2], [2, 8], [8, 4], [4, 11],
-  ];
-
-  return (
-    <svg viewBox="0 0 380 300" className="w-full h-auto" role="img"
-      aria-label="A class seated in a circle, their ideas joined by lengths of string">
-      <defs>
-        <radialGradient id="pd" cx="34%" cy="30%">
-          <stop offset="0%" stopColor="#fff" /><stop offset="100%" stopColor="#EFE9DA" />
-        </radialGradient>
-        <radialGradient id="pb" cx="34%" cy="30%">
-          <stop offset="0%" stopColor="#FBEDBD" /><stop offset="100%" stopColor="#E8C86A" />
-        </radialGradient>
-        <linearGradient id="str" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#3A3350" stopOpacity=".42" />
-          <stop offset="100%" stopColor="#3A3350" stopOpacity=".12" />
-        </linearGradient>
-        <filter id="sf" x="-40%" y="-40%" width="180%" height="180%">
-          <feDropShadow dx="0" dy="2" stdDeviation="2.6" floodColor="#2A2438" floodOpacity=".22" />
-        </filter>
-      </defs>
-
-      {/* chalk guide ring */}
-      <circle cx={CX} cy={CY} r={R} fill="none" stroke="rgba(58,51,80,.16)" strokeWidth="1.3" strokeDasharray="2 6" />
-      <circle cx={CX} cy={CY} r={R - 30} fill="none" stroke="rgba(58,51,80,.09)" strokeWidth="1" strokeDasharray="1 7" />
-
-      {/* string between seats: the idea passing around the room */}
-      <g fill="none" stroke="url(#str)" strokeWidth="1.15" strokeLinecap="round">
-        {chords.map(([a, b], i) => (
-          <line key={i} x1={seats[a].x} y1={seats[a].y} x2={seats[b].x} y2={seats[b].y}
-            className={i % 3 === 0 ? "stitch" : ""} style={{ animationDelay: `${(i % 6) * 0.25}s` }} />
-        ))}
-      </g>
-
-      {/* the seated class, as punched paper discs */}
-      {seats.map((s) => {
-        const lit = [0, 4, 7, 11].includes(s.i);
-        return (
-          <g key={s.i} filter="url(#sf)">
-            <circle cx={s.x} cy={s.y} r={lit ? 11.5 : 10}
-              fill={lit ? "url(#pb)" : "url(#pd)"} stroke="rgba(58,51,80,.2)" strokeWidth="1" />
-            <circle cx={s.x} cy={s.y} r="2.6" fill="rgba(58,51,80,.26)"
-              className={lit ? "breathe" : ""} style={{ animationDelay: `${s.i * 0.4}s` }} />
-          </g>
-        );
-      })}
-
-      {/* the concept being built in the middle of the room */}
-      <g filter="url(#sf)">
-        <g transform={`rotate(-6 ${CX} ${CY})`}>
-          <rect x={CX - 34} y={CY - 26} width="68" height="52" rx="4"
-            fill="#fff" stroke="rgba(58,51,80,.24)" strokeWidth="1.2" />
-          <path d={`M${CX - 22} ${CY - 12}h44M${CX - 22} ${CY - 4}h44M${CX - 22} ${CY + 4}h28`}
-            stroke="rgba(58,51,80,.26)" strokeWidth="1.2" strokeLinecap="round" />
-          <circle cx={CX + 18} cy={CY + 13} r="6.5" fill="#EAE6F5" stroke="rgba(58,51,80,.26)" strokeWidth="1" />
-          <path d={`M${CX + 14.6} ${CY + 13.2}l2.6 2.6 4.6-5`} fill="none" stroke="#3A3350"
-            strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" opacity=".7" />
-        </g>
-      </g>
-
-      {/* a slow orbiting marker: the question travelling the room */}
-      <g className="orbit">
-        <circle cx={CX} cy={CY - R - 20} r="4.2" fill="var(--rose, #E6B7B0)" stroke="rgba(58,51,80,.22)" strokeWidth="1" />
-      </g>
-
-      {/* chalk underline */}
-      <path d="M52 284C140 292 250 292 330 284" fill="none" stroke="rgba(58,51,80,.2)"
-        strokeWidth="1.4" strokeLinecap="round" strokeDasharray="1 5" />
-    </svg>
-  );
-}
-
-/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ *//* ------------------------------------------------------------------ */
 /* FEATURE ARTWORK                                                     */
 /* ------------------------------------------------------------------ */
 const art = {
@@ -393,11 +310,16 @@ export default function HomePage({ onLogin = () => {} }) {
 
           <Reveal delay={120}>
             <div className="glass sheen pin rounded-[26px] p-5 sm:p-8">
-              <img src={photo2} alt="Pragya AI"/>
+              <div className="relative overflow-hidden rounded-[20px]">
+              <img src={photo2} alt="Pragya AI" className="w-full h-full h-auto block" />
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-10 text-center">
               <div className="torn mt-2 mb-4" style={{ background: "linear-gradient(100deg,var(--lavender),var(--butter-deep))" }} />
               <p className="text-[13.5px] leading-relaxed text-center" style={{ color: "var(--ink-soft)" }}>
                 A class works out a mechanism together, using nothing but what is already in the room.
               </p>
+            </div>
+            </div>
             </div>
           </Reveal>
         </div>
